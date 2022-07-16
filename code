@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    
+    //Descricao e explicacao do programa
+    printf("Esse eh um programa de facil execucao, para o calculo com gastos\nrelacionados a producao de empadas, basta dizer o quanto foi\ngasto e ele vai calcular o lucro :D\n");
+    
+    double gastos, divisaob=0, divisaor=0, acumulado=0, price, vendapdia, divtotal=0;
+    int count=0, qnt, ingred, erro = 0;
+    char crtz;
+    
+    while (1>0){
+        while(1>0){
+            ingred = count + 1;
+            printf("\n---------------------------------------------------------------------------");
+            printf("\n %d˚ Ingrediente base",ingred);
+            printf("\n Digite quanto foi o produto:  (Digite '0' caso queira ir para os recheios)\n -> ");
+            scanf("%lf",&gastos);
+            if (gastos == 0) {
+                if (count == 0 ){
+                  printf("\nQue rude  :'(\n");
+                } else {
+                    count = 0;
+                    while(1>0){
+                    if (erro == 1){break;}
+                    while(1>0){
+                        ingred = count + 1; // vou fazer o calculo para recheios
+                        printf("\n---------------------------------------------------------------------------");
+                        printf("\n %d˚ Recheio",ingred);
+                        printf("\n Digite quanto foi o produto:  (Digite '0' caso tenha terminado)\n -> ");
+                        scanf("%lf",&gastos);
+                        if (gastos == 0) {
+                                while (1>0) {
+                                printf("\nTem certeza que está tudo certo? (s/n)\n -> ");
+                                fflush(stdin);
+                                scanf("%c", &crtz);
+                                scanf("%c", &crtz);
+                                fflush(stdin);
+                                if (crtz == 's' || crtz == 'S') {
+                                 printf("\nOk, deixa só eu fazer os calculos...\n");
+                                    erro = 0;
+                                    break;
+                                } else if (crtz == 'n' || crtz == 'N') {
+                                    printf("\nOk, vamos comecar de novo... \n");
+                                    erro = 1;
+                                break;
+                                } else{
+                                printf("\n ! -> Digite 's' para Sim ou 'n' para Nao <- !\n");
+                                }
+                            }
+                            break;
+                        } else {
+                        printf(" Quantas empadas produziu com ele?\n -> ");
+                        scanf("%d",&qnt);
+                        count++;        
+                        divisaor += (gastos/qnt);
+                        }
+                    }
+                        if (erro == 0){
+                            break;
+                        } else {
+                            count = 0;
+                            divisaob = 0;
+                            divisaor = 0;
+                        }
+                    }
+                }  
+            break;
+            } else {
+                printf(" Quantas empadas produziu com ele?\n -> ");
+                scanf("%d",&qnt);
+                count++;        
+                divisaob += (gastos/qnt);
+            }
+        }
+        if (erro == 0){
+            break;
+        } else {
+            count = 0;
+            divisaob = 0;
+            divisaor = 0;
+            erro = 0;
+        }
+    }
+    divisaob = divisaob / count;
+    divtotal = divisaor + divisaob;
+    printf("\nO gasto para a producao de uma empada eh:\n R$ %.2lf\n",divtotal);
+    printf("\nPor quanto você vende a empada?\n -> ");
+    scanf("%lf",&price);
+    printf("\nQuantas você vende por dia?\n -> ");
+    scanf("%lf",&vendapdia);
+    printf("\nO lucro na venda de uma empada eh:\n R$ %.2lf\nEm um mes de venda voce vai obter um lucro de:\n R$ %.2lf\n",price-divtotal,(price-divtotal)*20*vendapdia);
+    
+    return 0;
+}
